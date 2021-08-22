@@ -1,0 +1,21 @@
+{
+	"name": "frontender-task_vanilla",
+	"version": "0.0.1",
+	"description": "TBG Frontender task",
+	"scripts": {
+		"start": "npm run dev",
+		"dev": "webpack-dev-server --watch"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thebeansgroup/frontender-task_vanilla"
+	},
+	"author": "sam",
+	"dependencies": {},
+	"devDependencies": {
+		"babel-core": "^5.5.8",
+		"babel-loader": "^5.1.4",
+		"webpack": "^1.9.11",
+		"webpack-dev-server": "^1.9.0"
+	}
+}

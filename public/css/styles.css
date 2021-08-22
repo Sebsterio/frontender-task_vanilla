@@ -1,0 +1,215 @@
+/* ==== variables ==== */
+
+:root {
+	--width-m: 28rem;
+
+	--spacing-xs: 0.25rem;
+	--spacing-s: 0.75rem;
+	--spacing-m: 1rem;
+	--spacing-l: 1.2rem;
+	--spacing-xl: 2rem;
+	--spacing-xxl: 4rem;
+
+	--font-s: 0.8rem;
+	--font-m: 1rem;
+	--font-l: 1.1rem;
+	--font-xl: 1.9rem;
+
+	--radius: 4px;
+
+	--white: #fff;
+	--grey-light: #f8f8f8;
+	--grey: #f5f5f5;
+	--grey-dark: #d6d6d6;
+	--green: #245626;
+	--green-vibrant: #3cbf42;
+
+	--shadow: 0 0 0 1px var(--grey-dark);
+	--shadow-filter: 0 0 1px rgba(0, 0, 0, 0.35); /* dirty but I'm running out of time */
+}
+
+/* ==== base ==== */
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: var(--grey-light);
+	display: flex;
+	justify-content: center;
+	padding-top: var(--spacing-xl);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/* ==== utils ==== */
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.row > .column {
+	flex: 1 0 auto;
+	margin: var(--spacing-m);
+}
+
+/* ==== Event component ==== */
+
+.event {
+	max-width: var(--width-m);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+	overflow: hidden;
+	background-color: var(--white);
+	padding-bottom: var(--spacing-xs);
+}
+
+.event > div {
+	margin: var(--spacing-m) var(--spacing-s);
+}
+
+.event .event__title {
+	padding: var(--spacing-s);
+	border-radius: var(--radius);
+	background-color: var(--grey);
+	box-shadow: var(--shadow);
+	font-size: var(--font-m);
+	font-weight: bold;
+}
+
+.event .event__description {
+	margin-bottom: var(--spacing-xl);
+}
+
+.event .event__description p {
+	margin-bottom: var(--spacing-s);
+}
+
+.event .event__funding__totals {
+	position: relative;
+	padding: var(--spacing-m) var(--spacing-xs);
+	font-size: var(--font-l);
+	color: var(--green);
+}
+
+.event .event__funding__totals:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-top: 1px solid var(--grey-dark);
+}
+
+.event .event__funding__raised {
+	display: block;
+	font-size: var(--font-xl);
+	font-weight: bold;
+	margin-bottom: var(--spacing-xs);
+}
+
+.event .event__progress {
+	background-color: var(--grey);
+	box-shadow: var(--shadow);
+}
+
+/* Is this meant to be for screen readers? */
+.event .event__progress__total {
+	visibility: hidden;
+	position: absolute;
+}
+
+.event .event__progress_meter {
+	background-color: var(--green-vibrant);
+	height: var(--spacing-l);
+}
+
+.event .event__details {
+	margin-top: 0;
+	background-color: var(--grey);
+	box-shadow: var(--shadow);
+	font-size: var(--font-s);
+}
+
+.event .event__details__date,
+.event .event__details__location {
+	padding: 0 var(--spacing-s);
+}
+
+.event .event__details strong {
+	text-transform: uppercase;
+}
+
+/* ==== Comments component ==== */
+
+.comments {
+	max-width: var(--width-m);
+}
+
+.comment__children .comments {
+	margin-left: var(--spacing-xxl);
+}
+
+/* ==== Comment component ==== */
+
+.comment-container {
+	filter: drop-shadow(var(--shadow-filter));
+}
+
+.comment-container:not(:first-child) {
+	margin-top: var(--spacing-m);
+}
+
+.comment {
+	--comment--bump-height: 20px;
+	--comment--bump-width: 30px;
+
+	background-color: var(--grey);
+	padding: var(--spacing-s);
+	padding-bottom: calc(var(--spacing-s) + 20px);
+	clip-path: polygon(
+		0 0,
+		100% 0,
+		100% calc(100% - var(--comment--bump-height)),
+		var(--comment--bump-width) calc(100% - var(--comment--bump-height)),
+		0 100%
+	);
+
+	display: grid;
+	grid-template-areas:
+		"thumb head"
+		"thumb body";
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto 1fr;
+	grid-gap: var(--spacing-xs) var(--spacing-s);
+}
+
+.comment__children .comment {
+	background-color: var(--white);
+}
+
+.comment .comment__avatar {
+	--avatar--size: 65px;
+
+	width: var(--avatar--size);
+	height: var(--avatar--size);
+	background-color: black;
+	background-size: cover;
+	grid-area: thumb;
+}
+
+.comment .comment__heading {
+	grid-area: head;
+	font-size: var(--font-s);
+}
+
+.comment .comment__name {
+	font-weight: bold;
+}
+
+.comment .comment__comment {
+	grid-area: body;
+}
